@@ -4622,9 +4622,51 @@ const poke = [
   let pokemonss = JSON.stringify(poke)
   let pokemons = JSON.parse(pokemonss)
   
-  
-  
-  
+// API endpoint --------------------------------------------
+const baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
+
+// Get Elements --------------------------------------------
+// const searchInput = getElement('.search-input'),
+//       searchButton = getElement('.search-button'),
+//       container = getElement('.pokemon'),
+//       erroMessage = getElement('.error');
+
+var pokeName, // Nome ou numero passado na caixa de busca
+    pokemon, // Responsavel por guardar os dados recebidos da API
+    card; // Responsavel por receber o HTML 
+
+// Build Functions --------------------------------------------
+
+// Função para reduzir a escrita na captura de elementos HTML
+// function getElement(element) {
+//   return document.querySelector(element);
+// }
+
+// Função responsavel por fazer requisições para a API e inserir as respostas na variavel pokemon
+async function requestPokeInfo(url, name) {
+  await fetch(url + name)
+    .then(response => response.json())
+    .then(data => {
+      pokemon = data;
+      return data
+      // console.log(pokemon);
+    })
+    .catch(err => console.log(err));
+
+  }
+
+
+  let data
+async function carregaPoker(){
+  data = await requestPokeInfo(baseUrl, 1)
+  console.log(pokemon)
+}
+
+
+carregaPoker()
+
+console.log("aa",pokemon)
+console.log(data)  
   
   
   
